@@ -33,6 +33,8 @@ function Form({inputs,nextForm,prevForm, title }){
 function SideBar({children}){
 
     return(
+        <div>
+
 
         <section className="side-bar">
             <h1>CV GENERATOR</h1>
@@ -48,6 +50,9 @@ function SideBar({children}){
             </form>
         
         </section>
+
+
+        </div>
     )
 
 }
@@ -58,8 +63,15 @@ function CvDisplay(){
             <div>
                 <section className="left-section">
                     <div>
-                        <h2>Chiyembekezo <br /> Chilembwe</h2>
-                        <h1>Software Engineer</h1>
+                        <h2>
+                            Chiyembekezo 
+                            <br /> 
+                            Chilembwe 
+                            <br />  
+                            <span>Software Engineer</span>
+                        
+                        </h2>
+                        
                     </div>
                     <div>
                         <p>+265 993 62 61 97</p>
@@ -75,16 +87,21 @@ function CvDisplay(){
                         <h2>
                             TECHNICAL SKILLS
                         </h2>
-                        <li>Computer Vision: Yolov8, CVAT</li>
-                        <li>UX / UI design: Figma</li>
-                        <li>
-                            Programming: Python, HTML, CSS,
-                            Javascript, MySQL, Flask, C++, Arduino
-                            Programming
-                        </li>
-                        <li>
-                            AI Tools: Canva, ChatGPT, Runway ML
-                        </li>
+                        <ul>
+
+                            <li>Computer Vision: Yolov8, CVAT</li>
+                            <li>UX / UI design: Figma</li>
+                            <li>
+                                Programming: Python, HTML, CSS,
+                                Javascript, MySQL, Flask, C++, Arduino
+                                Programming
+                            </li>
+                            <li>
+                                AI Tools: Canva, ChatGPT, Runway ML
+                            </li>
+
+                        </ul>
+                       
 
                     </div>
                 </section>
@@ -125,16 +142,19 @@ function CvDisplay(){
 
                     </div>
                     <div>
-                        <h3>CERTIFICATIONS</h3>
-                        <li>
-                            Nvidia Fundamentals In Accelerated Computing with
-                            CUDA C/C++
-                            https://learn.nvidia.com/certificates?id=MDy2Fp2xTZ-3_
-                            oUr6Tlbng
-                        </li>
-                        <li>
-                            Micromek STEM Arduino Programming Certificate
-                        </li>
+                        <h2>CERTIFICATIONS</h2>
+                        <ul>
+                            <li>
+                                Nvidia Fundamentals In Accelerated Computing with
+                                CUDA C/C++
+                                https://learn.nvidia.com/certificates?id=MDy2Fp2xTZ-3_
+                                oUr6Tlbng
+                            </li>
+                            <li>
+                                Micromek STEM Arduino Programming Certificate
+                            </li>
+                        </ul>
+
                     </div>
 
                 </section>
