@@ -52,9 +52,94 @@ function SideBar({children}){
 
 }
 
-function cvDisplay(){
+function CvDisplay(){
     return (
         <section className="cv-section">
+            <div>
+                <section className="left-section">
+                    <div>
+                        <h2>Chiyembekezo <br /> Chilembwe</h2>
+                        <h1>Software Engineer</h1>
+                    </div>
+                    <div>
+                        <p>+265 993 62 61 97</p>
+                        <p>Blantyre, Malawi</p>
+                        <p>chiyembekezochilembwe21@gmail.com</p>
+                    </div>
+                    <div>
+                        <h2>EDUCATION</h2>
+                        <p>Bsc. Information Technology, Malawi University of Business and Applied Sciences</p>
+                        <p>2021- Present</p>
+                    </div>
+                    <div>
+                        <h2>
+                            TECHNICAL SKILLS
+                        </h2>
+                        <li>Computer Vision: Yolov8, CVAT</li>
+                        <li>UX / UI design: Figma</li>
+                        <li>
+                            Programming: Python, HTML, CSS,
+                            Javascript, MySQL, Flask, C++, Arduino
+                            Programming
+                        </li>
+                        <li>
+                            AI Tools: Canva, ChatGPT, Runway ML
+                        </li>
+
+                    </div>
+                </section>
+                <section className="right-section">
+                    <div>
+                        <h2>SUMMARY</h2>
+                        <p>
+                            As a motivated and tech-savvy student with a passion for
+                            learning, I am eager to leverage my skills in HTML, CSS,
+                            JavaScript, Python, Flask, and C++ to contribute effectively
+                            in an internship role. Seeking opportunities to gain hands-on
+                            experience and further develop my proficiency in software
+                            development and web technologies. 
+                        </p>
+                    </div>
+                    <div>
+                        <h2>PROJECTS</h2>
+                        <div>
+                            <h3>
+                                CROP DISEASE DETECTION MODEL
+                            </h3>
+                            <p>
+                                Teamed up with 6 Software engineers to implement a crop
+                                disease detection model that was implemented using
+                                Yolov8, HTML, CSS, Javascript, Flask, and SQLite.
+                            </p>
+                        </div>
+                        <div>
+                            <h3>
+                                AUTOMATED ALARM SYSTEM 
+                            </h3>
+                            <p>
+                                Teamed up with 5 software engineers to implement an
+                                automated Alarm System using an Arduino UNO,
+                                Ultrasonic Sensor, Keypad, and LCD. 
+                            </p>
+                        </div>
+
+                    </div>
+                    <div>
+                        <h3>CERTIFICATIONS</h3>
+                        <li>
+                            Nvidia Fundamentals In Accelerated Computing with
+                            CUDA C/C++
+                            https://learn.nvidia.com/certificates?id=MDy2Fp2xTZ-3_
+                            oUr6Tlbng
+                        </li>
+                        <li>
+                            Micromek STEM Arduino Programming Certificate
+                        </li>
+                    </div>
+
+                </section>
+            </div>
+
 
         </section>
     )
@@ -72,9 +157,11 @@ function Main(){
         setNumber(formNumber - 1);
     }
 
+
+
     if (formNumber === 0){
         return(
-    
+            <>
             <SideBar>
                 <Form inputs={[
                     {name:["name","Name", "text"]},
@@ -89,6 +176,11 @@ function Main(){
                 
                 />
             </SideBar>
+
+            <CvDisplay />
+            
+            </>
+            
                 
             
         )
