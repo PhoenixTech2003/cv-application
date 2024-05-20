@@ -1,9 +1,9 @@
 import { useState } from "react"
 
-function Form({inputs,nextForm,prevForm }){
+function Form({inputs,nextForm,prevForm, title }){
     return(
         <>
-        
+        <h4>{title}</h4>
         {inputs.map(input =>{
         
           return(
@@ -41,7 +41,7 @@ function SideBar({children}){
 
             </div>
             <form action="">
-            <h4>GENERAL INFORMATION</h4>
+            
 
             {children}
 
@@ -85,6 +85,7 @@ function Main(){
                 
                 nextForm={viewNextForm}
                 prevForm={viewPrevForm}
+                title= "GENERAL INFORMATION"
                 
                 />
             </SideBar>
@@ -109,7 +110,10 @@ function Main(){
                     
                     }
                     nextForm={viewNextForm}
-                    prevForm={viewPrevForm}/>
+                    prevForm={viewPrevForm}
+                    title= "EDUCATIONAL EXPERIENCE"
+                    />
+                    
             </SideBar>
                 
             
@@ -131,7 +135,10 @@ function Main(){
                     
                     
                     }
-                    prevForm={viewPrevForm}/>
+                    prevForm={viewPrevForm}
+                    title= "PRACTICAL EXPERIENCE"
+                    
+                    />
             </SideBar>
                 
             
