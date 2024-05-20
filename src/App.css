@@ -28,6 +28,34 @@
   font-size: 1rem;
 }
 
+.side-bar form  button{
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 2rem;
+  background-color: #3b82f6;
+  color: #fff;
+  border: none;
+  font-weight: 900;
+  font-size: 1rem;
+}
+
+.form-content{
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+  from{
+    opacity: 0;
+  }
+
+  to{
+    opacity: 1;
+  }
+  
+}
+
 
 
 
