@@ -1,11 +1,11 @@
-import {SideBar, MainDisplay}  from './components'
+import {Main}  from './components'
 import './App.css'
 
 function App() {
   return(
     <>
-      <SideBar />
-      <MainDisplay/>
+      <Main />
+      
     
     </>
   )
