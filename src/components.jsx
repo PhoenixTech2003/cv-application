@@ -1,6 +1,14 @@
 import { useState } from "react"
 
-function Form({inputs,nextForm,prevForm, title }){
+function Form({inputs,nextForm,prevForm, title, sync, textarea = false }){
+    let multiline = textarea[0] ? 
+        <div className="multiline">
+            <label htmlFor="responsibilities">{textarea[1]}</label>
+            <textarea onChange={sync} id="responsibilities"></textarea>
+        </div> :
+         null;
+         
+         
     return(
         <>
         <h4>{title}</h4>
@@ -10,7 +18,7 @@ function Form({inputs,nextForm,prevForm, title }){
   
               <div key={input.name[0]} className = 'form-content'>
                   <label htmlFor={input.name[0]}>{input.name[1]}</label>
-                  <input type={input.name[2]} id={input.name[0]} />
+                  <input type={input.name[2]} id={input.name[0]} onChange={sync} />
                   
   
               </div>
@@ -18,6 +26,7 @@ function Form({inputs,nextForm,prevForm, title }){
   
           )
       })}
+      {multiline}
       <button  onClick={nextForm}>Next</button>
       <button  onClick={prevForm}>Prev</button>
 
@@ -57,49 +66,35 @@ function SideBar({children}){
 
 }
 
-function CvDisplay(){
+function CvDisplay({details}){
     return (
         <section className="cv-section">
             <div>
                 <section className="left-section">
                     <div>
                         <h2>
-                            Chiyembekezo 
+                            {details.fname} 
                             <br /> 
-                            Chilembwe 
-                            <br />  
-                            <span>Software Engineer</span>
+                            {details.lname} 
                         
                         </h2>
                         
                     </div>
                     <div>
-                        <p>+265 993 62 61 97</p>
-                        <p>Blantyre, Malawi</p>
-                        <p>chiyembekezochilembwe21@gmail.com</p>
+                        <p>{details.phone}</p>
+                        <p>{details.email}</p>
                     </div>
                     <div>
                         <h2>EDUCATION</h2>
-                        <p>Bsc. Information Technology, Malawi University of Business and Applied Sciences</p>
-                        <p>2021- Present</p>
+                        <p>{details.title + " "} , {" " + details.school}</p>
+                        <p>{details.sYear}- {details.eYear}</p>
                     </div>
                     <div>
                         <h2>
-                            TECHNICAL SKILLS
+                            COMPANY NAME
                         </h2>
                         <ul>
-
-                            <li>Computer Vision: Yolov8, CVAT</li>
-                            <li>UX / UI design: Figma</li>
-                            <li>
-                                Programming: Python, HTML, CSS,
-                                Javascript, MySQL, Flask, C++, Arduino
-                                Programming
-                            </li>
-                            <li>
-                                AI Tools: Canva, ChatGPT, Runway ML
-                            </li>
-
+                            <li>{details.companyName}</li>
                         </ul>
                        
 
@@ -107,53 +102,19 @@ function CvDisplay(){
                 </section>
                 <section className="right-section">
                     <div>
-                        <h2>SUMMARY</h2>
-                        <p>
-                            As a motivated and tech-savvy student with a passion for
-                            learning, I am eager to leverage my skills in HTML, CSS,
-                            JavaScript, Python, Flask, and C++ to contribute effectively
-                            in an internship role. Seeking opportunities to gain hands-on
-                            experience and further develop my proficiency in software
-                            development and web technologies. 
-                        </p>
+                        <h2>POSTITION</h2>
+                        <ul>
+                            <li>{details.position}</li>
+                        </ul>
                     </div>
                     <div>
-                        <h2>PROJECTS</h2>
-                        <div>
-                            <h3>
-                                CROP DISEASE DETECTION MODEL
-                            </h3>
-                            <p>
-                                Teamed up with 6 Software engineers to implement a crop
-                                disease detection model that was implemented using
-                                Yolov8, HTML, CSS, Javascript, Flask, and SQLite.
-                            </p>
-                        </div>
-                        <div>
-                            <h3>
-                                AUTOMATED ALARM SYSTEM 
-                            </h3>
-                            <p>
-                                Teamed up with 5 software engineers to implement an
-                                automated Alarm System using an Arduino UNO,
-                                Ultrasonic Sensor, Keypad, and LCD. 
-                            </p>
-                        </div>
+                        <h2>RESPONSIBILITIES</h2>
+                        <p>{details.responsibilities}</p>
 
                     </div>
                     <div>
-                        <h2>CERTIFICATIONS</h2>
-                        <ul>
-                            <li>
-                                Nvidia Fundamentals In Accelerated Computing with
-                                CUDA C/C++
-                                https://learn.nvidia.com/certificates?id=MDy2Fp2xTZ-3_
-                                oUr6Tlbng
-                            </li>
-                            <li>
-                                Micromek STEM Arduino Programming Certificate
-                            </li>
-                        </ul>
+                        <h2>DURATION OF EMPLOYMENT</h2>
+                        <p>{details.eFrom} to {details.eTo}</p>
 
                     </div>
 
@@ -165,7 +126,37 @@ function CvDisplay(){
     )
 }
 function Main(){
-    const [formNumber, setNumber] = useState(0)
+    const [formNumber, setNumber] = useState(0);
+    const [details, setDetails] = useState(
+        {
+        fname:'John',
+        lname: 'Doe',
+        email: "johndoe@gmail.com",
+        phone: "0992233119",
+        school: "john doe university",
+        sYear: 2021,
+        eYear: 2024,
+        title: "Bsc. Information Technology",
+        companyName: "Phoenix Tech",
+        position: "CEO",
+        eFrom: 2022,
+        eTo: 2024,
+        responsibilities:'i made miillions'
+        
+    });
+
+    
+
+    function test(e){
+        if(e.target.id in details){
+            setDetails({
+                ...details,
+                [e.target.id]: e.target.value
+
+            })
+        }
+        
+    }
 
     function viewNextForm(e){
         e.preventDefault();
@@ -184,20 +175,24 @@ function Main(){
             <>
             <SideBar>
                 <Form inputs={[
-                    {name:["name","Name", "text"]},
-                    {name:["email","Email", "Email"]},
-                    {name:["phone","Phone"]},
+                    {name:["fname","First Name", "text"]},
+                    {name:["lname","Last Name", "text"]},
+                    {name:["email","Email", "email"]},
+                    {name:["phone","Phone", "text"]},
 
                 ]}
                 
                 nextForm={viewNextForm}
                 prevForm={viewPrevForm}
                 title= "GENERAL INFORMATION"
+                sync={test}
                 
                 />
             </SideBar>
 
-            <CvDisplay />
+            <CvDisplay
+                details={details}
+            />
             
             </>
             
@@ -210,12 +205,15 @@ function Main(){
     }else if(formNumber === 1){
 
         return (
-    
+            <>
+
             <SideBar>
                 <Form inputs={[
-                    {name:["schoolname","School"]},
+                    {name:["school","School"]},
                     {name:["title","Title Of Study"]},
-                    {name:["date", "Date", "date"]}
+                    {name:["sYear", "Start Year", "number"]},
+                    {name:["eYear", "End Year", "number"]},
+
                     
                 ]
                     
@@ -224,34 +222,51 @@ function Main(){
                     nextForm={viewNextForm}
                     prevForm={viewPrevForm}
                     title= "EDUCATIONAL EXPERIENCE"
+                    sync={test}
+
                     />
                     
             </SideBar>
+            <CvDisplay
+                details={details}
+            />
+            
+            
+            </>
+ 
                 
             
         )
     }else if(formNumber === 2){
 
         return (
-    
-            <SideBar>
-                <Form inputs={[
-                    {name:["companyName","Company Name", "text"]},
-                    {name:["postition","Position", "text"]},
-                    {name:["responsibilities", "Responsiblilities", "textarea"]},
-                    {name:["startDate", "Start Date", "date"]},
-                    {name:["endDate", "End Date", "date"]},
+            <>
+                    <SideBar>
+                    <Form inputs={[
+                        {name:["companyName","Company Name", "text"]},
+                        {name:["position","Position", "text"]},
+                        {name:["eFrom", "Start Date", "date"]},
+                        {name:["eTo", "End Date", "date"]},
 
-                    
-                ]
-                    
-                    
-                    }
-                    prevForm={viewPrevForm}
-                    title= "PRACTICAL EXPERIENCE"
-                    
-                    />
-            </SideBar>
+                        
+                    ]
+                        
+                        
+                        }
+                        prevForm={viewPrevForm}
+                        title= "PRACTICAL EXPERIENCE"
+                        sync={test}
+                        textarea = {[true, "responsibilites"]}
+                        
+                        />
+                </SideBar>
+                <CvDisplay
+                details={details}
+            />
+            
+            </>
+    
+            
                 
             
         )
