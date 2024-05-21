@@ -58,6 +58,11 @@
   
 }
 
+.multiline{
+  display: flex;
+  flex-direction: column;
+}
+
 .cv-section{
   padding: 3rem;
   background-color: #F5F5F5;
