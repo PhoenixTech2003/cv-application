@@ -1,10 +1,10 @@
 import { useState } from "react"
 
-function Form({inputs,nextForm,prevForm, title, sync, textarea = false }){
+function Form({inputs,nextForm,prevForm, title, sync, textarea = false,details }){
     let multiline = textarea[0] ? 
         <div className="multiline">
             <label htmlFor="responsibilities">{textarea[1]}</label>
-            <textarea onChange={sync} id="responsibilities"></textarea>
+            <textarea onChange={sync} id="responsibilities" value={details['responsibilities']}></textarea>
         </div> :
          null;
          
@@ -18,7 +18,7 @@ function Form({inputs,nextForm,prevForm, title, sync, textarea = false }){
   
               <div key={input.name[0]} className = 'form-content'>
                   <label htmlFor={input.name[0]}>{input.name[1]}</label>
-                  <input type={input.name[2]} id={input.name[0]} onChange={sync} />
+                  <input type={input.name[2]} id={input.name[0]} onChange={sync} value={details[input.name[0]]}/>
                   
   
               </div>
@@ -186,6 +186,7 @@ function Main(){
                 prevForm={viewPrevForm}
                 title= "GENERAL INFORMATION"
                 sync={test}
+                details={details}
                 
                 />
             </SideBar>
@@ -223,6 +224,8 @@ function Main(){
                     prevForm={viewPrevForm}
                     title= "EDUCATIONAL EXPERIENCE"
                     sync={test}
+                    details={details}
+
 
                     />
                     
@@ -257,7 +260,8 @@ function Main(){
                         title= "PRACTICAL EXPERIENCE"
                         sync={test}
                         textarea = {[true, "responsibilites"]}
-                        
+                        details={details}
+
                         />
                 </SideBar>
                 <CvDisplay
