@@ -89,7 +89,7 @@ function CvDisplay({details}){
                     </div>
                     <div>
                         <h2>EDUCATION</h2>
-                        <p>{details.title + " "} , {" " + details.school}</p>
+                        {/* <p>{details.title + " "} , {" " + details.school}</p> */}
                         <p>{details.sYear}- {details.eYear}</p>
                     </div>
                     <div>
