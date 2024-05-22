@@ -1,12 +1,15 @@
 import { useState } from "react"
 
-function Form({inputs,nextForm,prevForm, title, sync, textarea = false,details }){
+function Form({inputs,nextForm,prevForm, title, sync, textarea = false,details, nextBtn = false, prevBtn = false, }){
     let multiline = textarea[0] ? 
         <div className="multiline">
             <label htmlFor="responsibilities">{textarea[1]}</label>
             <textarea onChange={sync} id="responsibilities" value={details['responsibilities']}></textarea>
         </div> :
          null;
+
+    let nextButton = nextBtn ? <button  onClick={nextForm}>Next</button> : null;
+    let previousButton = prevBtn ? <button  onClick={prevForm}>Prev</button> : null;
          
          
     return(
@@ -27,8 +30,8 @@ function Form({inputs,nextForm,prevForm, title, sync, textarea = false,details }
           )
       })}
       {multiline}
-      <button  onClick={nextForm}>Next</button>
-      <button  onClick={prevForm}>Prev</button>
+      {nextButton}
+      {previousButton}
 
       </>
         
@@ -145,7 +148,9 @@ function Main(){
         
     });
 
-    
+    if(formNumber > 2 || formNumber < 0){
+        setNumber(0);
+    }
 
     function test(e){
         if(e.target.id in details){
@@ -168,7 +173,7 @@ function Main(){
         setNumber(formNumber - 1);
     }
 
-
+    
 
     if (formNumber === 0){
         return(
@@ -187,6 +192,7 @@ function Main(){
                 title= "GENERAL INFORMATION"
                 sync={test}
                 details={details}
+                nextBtn = {true}
                 
                 />
             </SideBar>
@@ -201,7 +207,7 @@ function Main(){
             
         )
 
-
+   
 
     }else if(formNumber === 1){
 
@@ -225,6 +231,8 @@ function Main(){
                     title= "EDUCATIONAL EXPERIENCE"
                     sync={test}
                     details={details}
+                    nextBtn = {true}
+                    prevBtn = {true}
 
 
                     />
@@ -261,6 +269,7 @@ function Main(){
                         sync={test}
                         textarea = {[true, "responsibilites"]}
                         details={details}
+                        prevBtn = {true}
 
                         />
                 </SideBar>
